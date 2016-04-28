@@ -31,7 +31,7 @@
 		}
 
 		public function get_base_path($dataset, $version) {
-			return sprintf("http://%s/%s/data_sets/%s/data/%s", $this->host, $this->api_version, $dataset, $version);
+			return sprintf("https://%s/%s/data_sets/%s/data/%s", $this->host, $this->api_version, $dataset, $version);
 		}
 
 		private function is_aggregation($options) {

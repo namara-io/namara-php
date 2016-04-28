@@ -1,39 +1,23 @@
 Namara
 ======
 
-The official php client for the Namara Open Data service. [namara.io](http://namara.io)
+The official PHP client for the Namara Open Data service. [namara.io](https://namara.io)
 
 ## Installation
 
 ```bash
-git clone git@github.com:namara-io/namara-php.git
+composer require namara/namara
 ```
-
-### On Mac
-Download and install MacPorts: http://www.macports.org/install.php
-
-```bash
-sudo port install php53-curl 
-```
-
-### On Ubuntu
-
-```bash
-sudo apt-get install php53-curl
-sudo service apache2 restart
-```
-
-Install PHPUnit: composer global require "phpunit/phpunit=4.6.*"
 
 ## Usage
 
 ### Instantiation
 
 You need a valid API key in order to access Namara (you can find it in your My Account details on namara.io).
-Update config.py with your API_KEY
 
+To load package, use Composer's [autoload](https://getcomposer.org/doc/00-intro.md#autoloading).
 ```php
-include 'namara'
+require_once 'vendor/autoload.php';
 
 $namara = new Namara({YOUR_API_KEY});
 ```
@@ -46,32 +30,32 @@ $namara = new Namara({YOUR_API_KEY}, true);
 
 ### Getting Data
 
-To make a basic request to the Namara API you can call `get` on your instantiated object and pass it the ID of the dataset you want and the ID of the version of the data set:
+To make a basic request to the Namara API you can call `get` on your instantiated object and pass it the ID of the data set you want and the version of the data set:
 
 ```php
-$response = namara->get('18b854e3-66bd-4a00-afba-8eabfc54f524', 'en-2');
+$response = namara->get('5885fce0-92c4-4acb-960f-82ce5a0a4650', 'en-1');
 ```
 
-Without a third options argument passed, this will return data with the Namara default offset (0) and limit (10) applied. To specify options, you can pass an options argument:
+Without a third options argument passed, this will return data with the Namara default offset (0) and limit (250) applied. To specify options, you can pass an options argument:
 
 ```php
 $options = (Object) array('offset' => 0, 'limit' => 150);
 
-$namara->get('18b854e3-66bd-4a00-afba-8eabfc54f524', 'en-2', options);
+$namara->get('5885fce0-92c4-4acb-960f-82ce5a0a4650', 'en-1', options);
 ```
 
 ### Options
 
-All [Namara data options](http://namara.io/#/api) are supported.
+All [Namara data options](https://namara.io/#/api) are supported.
 
 **Basic options**
 
 ```php
 $options = (Object) array(
-  'select'=> 'p0,p1',
-  'where' => 'p0 = 100 AND nearby(p3, 43.25, -123.1, 10km)',
+  'select'=> 'town,geometry',
+  'where' => 'town = "TORONTO" AND nearby(geometry, 43.6, -79.4, 10km)',
   'offset' => 0,
-  'limit' => 10
+  'limit' => 20
 );
 ```
 
@@ -92,8 +76,10 @@ $options = (Object) array(
 
 ### Running Tests
 
-From command line:
+```bash
+./vendor/bin/phpunit test_namara.php
+```
 
-```
-phpunit --verbose test_namara.php
-```
+### License
+
+Apache License, Version 2.0
