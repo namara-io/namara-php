@@ -1,5 +1,5 @@
 <?php
-	require_once('namara.php');
+	require_once 'src/namara.php';
 
 	class NamaraTest extends PHPUnit_Framework_TestCase {
 
