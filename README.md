@@ -15,7 +15,7 @@ composer require namara/namara
 
 You need a valid API key in order to access Namara (you can find it in your My Account details on namara.io).
 
-To load package, use Composer's [autoload](https://getcomposer.org/doc/00-intro.md#autoloading).
+To load package, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading).
 ```php
 require_once 'vendor/autoload.php';
 
