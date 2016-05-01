@@ -52,10 +52,10 @@ All [Namara data options](https://namara.io/#/api) are supported.
 
 ```php
 $options = (Object) array(
-  'select'=> 'town,geometry',
-  'where' => 'town = "TORONTO" AND nearby(geometry, 43.6, -79.4, 10km)',
-  'offset' => 0,
-  'limit' => 20
+  'select'=> 'market_nam,website',
+  'where' => 'town = "Toronto" AND nearby(geometry, 43.6, -79.4, 10km)',
+  'offset' => '0',
+  'limit' => '20'
 );
 ```
 
